@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>인하대학교 로타랙트 안전 관리 및 교육 포털</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome 아이콘 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Noto Sans KR 폰트 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+        /* Custom Signature Canvas Style */
+        #sig-canvas {
+            border: 2px dashed #cbd5e1;
+            background-color: #f8fafc;
+            cursor: crosshair;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 min-h-screen flex flex-col">
+
+    <!-- TOP HEADER -->
+    <header class="bg-[#004d9c] text-white shadow-md py-4 px-6 flex justify-between items-center sticky top-0 z-50">
+        <div class="flex items-center space-x-3">
+            <div class="bg-white p-2 rounded-full">
+                <!-- Rotaract Symbolic Color Style Icon -->
+                <i class="fa-solid fa-shield-halved text-[#d91c5c] text-xl"></i>
+            </div>
+            <div>
+                <h1 class="text-lg font-bold tracking-tight">INHA ROTARACT</h1>
+                <p class="text-xs text-slate-200">안전 관리 및 신뢰 회복 포털</p>
+            </div>
+        </div>
+        <div class="hidden md:flex items-center space-x-6 text-sm font-medium">
+            <span class="bg-[#d91c5c] px-3 py-1 rounded-full text-xs font-bold">운영정상화 TF</span>
+            <span class="text-slate-200"><i class="fa-solid fa-university mr-1"></i> 인하대학교 동아리연합회 제출용</span>
+        </div>
+    </header>
+
+    <!-- MAIN WRAPPER -->
+    <div class="flex flex-1 flex-col lg:flex-row">
+        <!-- SIDE NAVIGATION -->
+        <nav class="w-full lg:w-64 bg-white border-r border-slate-200 p-4 flex flex-row lg:flex-col space-x-2 lg:space-x-0 lg:space-y-2 overflow-x-auto lg:overflow-x-visible">
+            <button onclick="switchTab('ppt')" id="btn-ppt" class="tab-btn flex-1 lg:flex-initial flex items-center justify-center lg:justify-start space-x-3 px-4 py-3 rounded-xl font-medium transition-all bg-[#004d9c] text-white">
+                <i class="fa-solid fa-person-chalkboard text-lg"></i>
+                <span class="text-sm">① 안전 교육 PPT</span>
+            </button>
+            <button onclick="switchTab('cloud')" id="btn-cloud" class="tab-btn flex-1 lg:flex-initial flex items-center justify-center lg:justify-start space-x-3 px-4 py-3 rounded-xl font-medium transition-all text-slate-600 hover:bg-slate-100">
+                <i class="fa-solid fa-cloud-arrow-up text-lg"></i>
+                <span class="text-sm">② 징계 기록 클라우드</span>
+            </button>
+            <button onclick="switchTab('pledge')" id="btn-pledge" class="tab-btn flex-1 lg:flex-initial flex items-center justify-center lg:justify-start space-x-3 px-4 py-3 rounded-xl font-medium transition-all text-slate-600 hover:bg-slate-100">
+                <i class="fa-solid fa-file-signature text-lg"></i>
+                <span class="text-sm">③ 규정 준수 서약서</span>
+            </button>
+        </nav>
+
+        <!-- CONTENT CONTAINER -->
+        <main class="flex-1 p-4 md:p-8">
+            
+            <!-- SECTION 1: 안전 교육 PPT (10-Slide Interactive Presentation) -->
+            <section id="section-ppt" class="tab-content block">
+                <div class="max-w-4xl mx-auto">
+                    <div class="flex justify-between items-center mb-6">
+                        <div>
+                            <h2 class="text-2xl font-bold text-slate-800">동아리방 안전 관리 및 소방교육 PPT</h2>
+                            <p class="text-sm text-slate-500 mt-1">신입 부원 모집 및 학기 초 의무 이수 프레젠테이션</p>
+                        </div>
+                        <span class="text-xs bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full font-semibold">의무 이수 대상</span>
+                    </div>
+
+                    <!-- PPT Slide Viewport -->
+                    <div class="bg-slate-900 rounded-2xl shadow-xl overflow-hidden aspect-[16/9] relative text-white flex flex-col justify-between p-8 md:p-12 border border-slate-800">
+                        
+                        <!-- Slide Background Decoration Pattern -->
+                        <div class="absolute inset-0 opacity-5 pointer-events-none bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]"></div>
+
+                        <!-- Slide Top Header -->
+                        <div class="flex justify-between items-center z-10 border-b border-white/10 pb-4">
+                            <span class="text-xs font-bold tracking-widest text-[#d91c5c]"><i class="fa-solid fa-circle-exclamation mr-1"></i> ROTARACT SAFETY EDUCATION</span>
+                            <span class="text-xs text-slate-400 font-mono" id="slide-number">01 / 07</span>
+                        </div>
+
+                        <!-- Slide Main Content (Dynamic) -->
+                        <div class="my-auto z-10" id="slide-content">
+                            <!-- JS will inject content here -->
+                        </div>
+
+                        <!-- Slide Footer -->
+                        <div class="flex justify-between items-center z-10 border-t border-white/10 pt-4">
+                            <p class="text-xs text-slate-400">인하대학교 로타랙트 임원진 안전관리 TF</p>
+                            <!-- Progress Bar -->
+                            <div class="w-1/3 bg-slate-700 h-1.5 rounded-full overflow-hidden">
+                                <div id="slide-progress" class="bg-[#d91c5c] h-full transition-all duration-300" style="width: 14%"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide Controller -->
+                    <div class="flex justify-between items-center mt-6 bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
+                        <button onclick="prevSlide()" class="px-5 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-lg text-sm transition-all flex items-center space-x-2">
+                            <i class="fa-solid fa-arrow-left"></i> <span>이전 슬라이드</span>
+                        </button>
+                        <div class="flex space-x-1.5" id="slide-dots">
+                            <!-- Dynamic dots -->
+                        </div>
+                        <button onclick="nextSlide()" class="px-5 py-2.5 bg-[#004d9c] hover:bg-[#003c7a] text-white font-semibold rounded-lg text-sm transition-all flex items-center space-x-2">
+                            <span>다음 슬라이드</span> <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 2: 징계 기록 클라우드 (Disciplinary Cloud Storage Archive) -->
+            <section id="section-cloud" class="tab-content hidden">
+                <div class="max-w-5xl mx-auto">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+                        <div>
+                            <h2 class="text-2xl font-bold text-slate-800">공식 행정·징계 기록 아카이브</h2>
+                            <p class="text-sm text-slate-500 mt-1">임원진 교체 시 영구 보존 및 투명한 인수인계를 위한 중앙 클라우드 시스템</p>
+                        </div>
+                        <button onclick="openUploadModal()" class="self-start md:self-auto px-4 py-2 bg-[#d91c5c] hover:bg-[#b8134a] text-white font-semibold rounded-lg text-sm transition-all flex items-center space-x-2 shadow-sm">
+                            <i class="fa-solid fa-cloud-arrow-up"></i> <span>새 지적/징계 보고서 등록</span>
+                        </button>
+                    </div>
+
+                    <!-- Cloud Directory Navigation Bar -->
+                    <div class="bg-white border border-slate-200 rounded-xl shadow-sm overflow-hidden mb-6">
+                        <div class="bg-slate-50 px-4 py-3 border-b border-slate-200 flex items-center justify-between text-sm">
+                            <div class="flex items-center space-x-2 text-slate-600 font-medium">
+                                <i class="fa-solid fa-folder-closed text-amber-500"></i>
+                                <span>Root</span>
+                                <i class="fa-solid fa-chevron-right text-xs text-slate-400"></i>
+                                <span class="text-slate-900 font-semibold">징계 및 행정 지적 대장</span>
+                            </div>
+                            <span class="text-xs text-slate-400 font-mono">접근 등급: 정단원/임원진 이상</span>
+                        </div>
+
+                        <!-- Documents List Table -->
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left border-collapse">
+                                <thead>
+                                    <tr class="bg-slate-100/50 text-slate-500 text-xs font-bold uppercase tracking-wider border-b border-slate-200">
+                                        <th class="px-6 py-3.5">문서명</th>
+                                        <th class="px-6 py-3.5">구분 및 경고 회차</th>
+                                        <th class="px-6 py-3.5">발생 일자</th>
+                                        <th class="px-6 py-3.5 font-mono">관리코드</th>
+                                        <th class="px-6 py-3.5 text-right">작업</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="cloud-file-list" class="divide-y divide-slate-100 text-sm">
+                                    <!-- JS will render file rows here -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Cloud Usage Guide Banner -->
+                    <div class="bg-[#004d9c]/5 border border-[#004d9c]/10 rounded-xl p-5 flex items-start space-x-4">
+                        <i class="fa-solid fa-circle-info text-[#004d9c] text-xl mt-0.5"></i>
+                        <div>
+                            <h4 class="font-bold text-[#004d9c] text-sm">기록 누락 차단 보장 안내</h4>
+                            <p class="text-xs text-slate-600 mt-1 leading-relaxed">
+                                인하대학교 로타랙트는 이전 기수의 인수인계 소홀로 1, 2차 주류 반입 경고를 몰라 3차 경고 누적으로 이어진 뼈아픈 실수를 절대 반복하지 않습니다. 해당 클라우드는 임원진 인수인계서의 제1수칙 파일로 지정되어 관리되며, 동아리연합회 및 지도 단체와 상시 동기화됩니다.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 3: 규정 준수 서약서 (Interactive Pledge Form) -->
+            <section id="section-pledge" class="tab-content hidden">
+                <div class="max-w-3xl mx-auto">
+                    <div class="mb-6">
+                        <h2 class="text-2xl font-bold text-slate-800">동아리방 규정 준수 및 안전 책임 서약서</h2>
+                        <p class="text-sm text-slate-500 mt-1">부원의 연대 책임감 고취 및 강력한 안전 자정 노력을 약속하는 디지털 동의서</p>
+                    </div>
+
+                    <!-- Interactive Pledge Paper Form -->
+                    <div class="bg-white border-2 border-slate-300 rounded-2xl shadow-xl p-6 md:p-12 relative overflow-hidden" id="pledge-form-area">
+                        <!-- Watermark Logo Pattern -->
+                        <div class="absolute inset-0 flex items-center justify-center opacity-[0.03] pointer-events-none select-none">
+                            <i class="fa-solid fa-shield-halved text-[300px]"></i>
+                        </div>
+
+                        <!-- Form Title -->
+                        <div class="text-center mb-8 border-b-2 border-slate-200 pb-6 relative z-10">
+                            <h3 class="text-2xl md:text-3xl font-extrabold text-slate-900 tracking-tight">규 정 준 수 서 약 서</h3>
+                            <p class="text-slate-500 text-sm mt-2">인하대학교 로타랙트 회원 자격 확인 및 준수 확인</p>
+                        </div>
+
+                        <!-- Pledge Clauses -->
+                        <div class="space-y-6 text-slate-700 text-sm md:text-base leading-relaxed mb-8 relative z-10">
+                            <p class="font-medium text-slate-900">본인은 인하대학교 로타랙트의 회원으로서, 건전한 대학 동아리방 문화 정착 및 학내 구성원의 소방 안전 확보를 위해 아래 규정을 신의 성실의 원칙에 입각하여 절대 준수할 것을 서약합니다.</p>
+                            
+                            <div class="space-y-4 bg-slate-50 p-5 rounded-xl border border-slate-100">
+                                <div class="flex items-start space-x-3">
+                                    <span class="bg-[#d91c5c] text-white rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">1</span>
+                                    <p class="font-medium text-slate-800">동아리방 내 <span class="text-[#d91c5c] font-bold">주류 및 일체의 유해 물질 일체 반입 및 음주 행위를 일절 금지</span>하며, 적발 시 사유 불문 즉각적인 회원 자격 정지에 동의합니다.</p>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <span class="bg-[#d91c5c] text-white rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">2</span>
+                                    <p class="font-medium text-slate-800">화재 예방 및 동아리방 소방안전 규정에 의거, <span class="text-[#004d9c] font-bold">비인가 임의 온열 및 전열기구(개인 온풍기, 난로 등)의 반입을 절대 금지</span>합니다.</p>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <span class="bg-[#d91c5c] text-white rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">3</span>
+                                    <p class="font-medium text-slate-800">임원진 및 학교 기관의 동아리방 <span class="font-bold text-slate-900">정기/상시 소방 및 위생 점검 활동에 성실하게 응하고 적극 협조</span>하겠습니다.</p>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <span class="bg-[#d91c5c] text-white rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">4</span>
+                                    <p class="font-medium text-slate-800">규정 위반 시 학교의 규정에 의한 <span class="text-rose-600 font-bold">동아리 전체 징계 및 동아리방 회수 등의 행정 처분 조치를 전적으로 수용</span>하고 이의를 제기하지 않습니다.</p>
+                                </div>
+                            </div>
+                            <p class="text-center font-bold text-slate-800 text-base py-4">2026년 5월 18일</p>
+                        </div>
+
+                        <!-- Signer Information Fields -->
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8 relative z-10">
+                            <div>
+                                <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">서약자 성명</label>
+                                <input type="text" id="signer-name" placeholder="홍길동" class="w-full px-4 py-2.5 rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#004d9c] text-sm font-semibold">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">학번 (인하대학교)</label>
+                                <input type="text" id="signer-id" placeholder="12210000" class="w-full px-4 py-2.5 rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#004d9c] text-sm font-semibold">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">연락처</label>
+                                <input type="text" id="signer-phone" placeholder="010-1234-5678" class="w-full px-4 py-2.5 rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#004d9c] text-sm font-semibold">
+                            </div>
+                        </div>
+
+                        <!-- Signature Pad (HTML5 Canvas) -->
+                        <div class="mb-8 relative z-10">
+                            <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">디지털 서명란</label>
+                            <div class="relative">
+                                <canvas id="sig-canvas" width="600" height="150" class="w-full rounded-xl"></canvas>
+                                <button onclick="clearSignature()" class="absolute bottom-3 right-3 px-3 py-1.5 bg-slate-200 hover:bg-slate-300 text-slate-700 text-xs font-bold rounded shadow-sm transition-all flex items-center space-x-1">
+                                    <i class="fa-solid fa-eraser"></i> <span>지우기</span>
+                                </button>
+                            </div>
+                            <p class="text-xs text-slate-400 mt-2 text-right">※ 마우스 드래그 또는 모바일 터치 스크린을 사용하여 서명란에 직접 본인 성명을 기입해 주세요.</p>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="text-center relative z-10 border-t border-slate-200 pt-6">
+                            <button onclick="submitPledge()" class="w-full md:w-auto px-8 py-3.5 bg-[#004d9c] hover:bg-[#003c7a] text-white font-bold rounded-xl transition-all shadow-md hover:shadow-lg flex items-center justify-center space-x-2 mx-auto">
+                                <i class="fa-solid fa-file-signature"></i> <span>동의서 검증 및 서약서 제출</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- MODAL 1: 징계 기록 업로드 추가 시뮬레이션 모달 -->
+    <div id="upload-modal" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 flex items-center justify-center hidden">
+        <div class="bg-white rounded-2xl w-full max-w-md p-6 shadow-2xl border border-slate-100">
+            <div class="flex justify-between items-center mb-4 pb-2 border-b border-slate-100">
+                <h3 class="text-lg font-bold text-slate-800">신규 징계/지적 기록 업로드</h3>
+                <button onclick="closeUploadModal()" class="text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark text-lg"></i></button>
+            </div>
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">보고서/문서명</label>
+                    <input type="text" id="new-doc-title" placeholder="예: 2026-05_안전정비_현장조사_보고서" class="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#d91c5c]">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">분류 구분</label>
+                    <select id="new-doc-type" class="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#d91c5c]">
+                        <option value="경고 지적">경고 및 지적 사항</option>
+                        <option value="합동 점검">정기 소방 합동 점검 결과</option>
+                        <option value="자체 개선">자체 정상화 계획 보완안</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">지적 발생 일자</label>
+                    <input type="date" id="new-doc-date" class="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#d91c5c]">
+                </div>
+                <div class="bg-slate-50 border border-dashed border-slate-300 rounded-xl p-4 text-center cursor-pointer hover:bg-slate-100 transition-all">
+                    <i class="fa-solid fa-file-pdf text-3xl text-rose-500 mb-2"></i>
+                    <p class="text-xs text-slate-600 font-semibold">드래그하거나 이곳을 클릭하여 PDF 보고서 업로드</p>
+                    <p class="text-[10px] text-slate-400 mt-1">최대 용량 10MB 이하 PDF, HWP, DOCX 파일 전용</p>
+                </div>
+            </div>
+            <div class="mt-6 flex space-x-3">
+                <button onclick="closeUploadModal()" class="flex-1 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-lg text-sm transition-all">취소</button>
+                <button onclick="addCloudFile()" class="flex-1 py-2 bg-[#d91c5c] hover:bg-[#b8134a] text-white font-semibold rounded-lg text-sm transition-all shadow-sm">업로드 완료</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 2: 징계 아카이브 세부 보기 모달 (Immersive Document Reader) -->
+    <div id="view-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center hidden">
+        <div class="bg-white rounded-2xl w-full max-w-lg p-6 shadow-2xl border border-slate-100 relative">
+            <button onclick="closeViewModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark text-lg"></i></button>
+            <div id="view-modal-content">
+                <!-- JS dynamic generation -->
+            </div>
+        </div>
+    </div>
+
+    <!-- CUSTOM NOTIFICATION (No native alert fallback) -->
+    <div id="toast" class="fixed bottom-6 right-6 bg-slate-900 text-white px-5 py-3.5 rounded-xl shadow-2xl flex items-center space-x-3 transform translate-y-20 opacity-0 transition-all duration-300 z-50">
+        <div id="toast-icon" class="text-emerald-400"><i class="fa-solid fa-circle-check text-lg"></i></div>
+        <p class="text-sm font-semibold" id="toast-message">서약서 제출이 완료되었습니다.</p>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="bg-white border-t border-slate-200 py-6 px-6 text-center text-xs text-slate-400 mt-auto">
+        <p>© 2026 INHA UNIVERSITY ROTARACT CLUB. All Rights Reserved. 인하대학교 동아리연합회 심의 대응 전용 자산.</p>
+    </footer>
+
+    <!-- INTERACTIVE JAVASCRIPT LOGIC -->
+    <script>
+        // 1. DATA DEFINITIONS
+        // Slide Show Data
+        const slides = [
+            {
+                title: "인하대학교 로타랙트 동아리방<br>소방 및 질서 준수 의무 교육",
+                subtitle: "인하대학교 학생지원팀 / 동아리연합회 규정 철저 준수 가이드",
+                type: "intro",
+                content: `
+                    <div class="space-y-4 max-w-2xl">
+                        <p class="text-base text-slate-300 leading-relaxed">
+                            본 안전교육 자료는 동아리연합회 소방 안전 규정 및 주류 반입 금지 서약을 준수하며, 깨끗하고 건전하며 모두에게 무해한 인하 로타랙트의 동아리방(학생회관 422B호)의 운영 재건을 지향합니다.
+                        </p>
+                        <div class="bg-white/5 border border-white/10 p-4 rounded-xl mt-4 flex items-center space-x-4">
+                            <i class="fa-solid fa-user-shield text-[#d91c5c] text-2xl"></i>
+                            <p class="text-xs text-slate-300">신규 부원 및 기존 단원은 학기 최초 활동 시 반드시 교육을 완료하고 디지털 안전 서명부를 작성해야만 출입 승인을 획득할 수 있습니다.</p>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                title: "[원칙 1] 동아리방 내 주류 반입 및 복용 절대 금지",
+                subtitle: "가장 엄격히 처벌되는 최고 위반 항목",
+                type: "rule",
+                content: `
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+                        <div class="space-y-3">
+                            <p class="text-sm text-slate-300 leading-relaxed">• 학외 및 대외활동(엠티, 연합행사 등) 후 잔여 주류(캔맥주, 소주 등)의 단순 박스 임시 보관도 전량 위반 처리됩니다.</p>
+                            <p class="text-sm text-slate-300 leading-relaxed">• 외부 음식을 배달해 취식하는 과정에서 동반 반입되는 반주용 음주 역시 전면 차단 및 단체 징계 사유가 됩니다.</p>
+                        </div>
+                        <div class="bg-[#d91c5c]/10 border border-[#d91c5c]/30 rounded-xl p-4">
+                            <h4 class="text-[#d91c5c] font-bold text-sm mb-2"><i class="fa-solid fa-triangle-exclamation mr-1"></i> 위반 시 조치 사항</h4>
+                            <p class="text-xs text-slate-200">적발 즉시 동아리 회원 자격 임시 박탈 및 사건 경위서를 동아리연합회 및 지도교수회에 회부 조치함.</p>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                title: "[원칙 2] 화재 유발 비인가 전열기구 반입 금지",
+                subtitle: "3차 경고 온풍기 적발 사유에 대한 철저 대책",
+                type: "rule",
+                content: `
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+                        <div class="space-y-3">
+                            <p class="text-sm text-slate-300 leading-relaxed">• <strong>금지 품목:</strong> 개인 미니 온풍기, 가정용 전기 온풍기, 미니 열풍기, 전기 장판, 전기 방석(인증받지 않은 저가형 멀티탭 결합형 포함).</p>
+                            <p class="text-sm text-slate-300 leading-relaxed">• 기존 관행에 의거해 방치되어 있던 기기도 본 가이드가 배포된 즉시 자진 수거 및 전량 폐기되어야 합니다.</p>
+                        </div>
+                        <div class="bg-amber-500/10 border border-amber-500/30 rounded-xl p-4">
+                            <h4 class="text-amber-400 font-bold text-sm mb-2"><i class="fa-solid fa-fire-extinguisher mr-1"></i> 올바른 동절기 실내 관리</h4>
+                            <p class="text-xs text-slate-200">학생회관의 중앙 난방 일정 시스템을 철저히 확인하고, 실내 온도가 너무 낮을 시에는 과열 우려가 없는 허가된 제품 이외엔 옷차림새 보완을 가이드로 설정함.</p>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                title: "[원칙 3] 위생 및 취식 후 뒷정리 정착화",
+                subtitle: "쾌적하고 품격 있는 학내 쉼터 공간 유지",
+                type: "rule",
+                content: `
+                    <div class="space-y-4">
+                        <div class="grid grid-cols-3 gap-4">
+                            <div class="bg-slate-800 p-3 rounded-lg text-center">
+                                <i class="fa-solid fa-trash text-rose-400 text-lg mb-1"></i>
+                                <h5 class="text-xs font-bold text-slate-100">외부 배달음식 즉시 반출</h5>
+                            </div>
+                            <div class="bg-slate-800 p-3 rounded-lg text-center">
+                                <i class="fa-solid fa-bottle-water text-sky-400 text-lg mb-1"></i>
+                                <h5 class="text-xs font-bold text-slate-100">일회용기 당일 배출</h5>
+                            </div>
+                            <div class="bg-slate-800 p-3 rounded-lg text-center">
+                                <i class="fa-solid fa-wind text-emerald-400 text-lg mb-1"></i>
+                                <h5 class="text-xs font-bold text-slate-100">수시 공기 환기 강제</h5>
+                            </div>
+                        </div>
+                        <p class="text-xs text-slate-400 leading-relaxed">정리되지 않은 컵라면 용기 등은 악취 및 해충 번식의 주원인이며 학생지원팀 상설 위생 불시 암행 감찰의 실점 요인으로 작용합니다. 매주 일요일 임원진이 수시 정비합니다.</p>
+                    </div>
+                `
+            },
+            {
+                title: "[화재 안전] 인하대 소화기 사용 및 비상 대비",
+                subtitle: "안전 상황 실전 대처 긴급 핵심 수칙",
+                type: "safety",
+                content: `
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="bg-slate-800/60 p-4 rounded-xl border border-slate-700">
+                            <h4 class="text-rose-400 font-bold text-sm mb-2"><i class="fa-solid fa-shield-cat mr-1"></i> 화재 조치 골든타임 수칙</h4>
+                            <p class="text-xs text-slate-300 leading-relaxed">
+                                1. 발견 즉시 복도 소방 종합경보 비상벨 수동 인출 작동.<br>
+                                2. 동아리방 출입구 외측 상시 비치된 'ABC 소화기' 안전핀 신속 제어 후 발화 지점 골고루 분사.<br>
+                                3. 대피 시 출입문을 반드시 차단하여 화재 확산 지연.
+                            </p>
+                        </div>
+                        <div class="bg-slate-800/60 p-4 rounded-xl border border-slate-700">
+                            <h4 class="text-[#004d9c] font-bold text-sm mb-2"><i class="fa-solid fa-phone mr-1"></i> 긴급 안보 연락망</h4>
+                            <p class="text-xs text-slate-300 leading-relaxed">
+                                • 소방방재 종합 상황실: 032-119<br>
+                                • 인하대학교 관리본부 경비 상황실: 032-860-9112<br>
+                                • 인하대학교 동아리연합회 행정처: 032-860-9221
+                            </p>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                title: "[수칙] 야간 시간 사용 통제 가이드라인",
+                subtitle: "인하대 학생회관 보안 규정 및 가이드",
+                type: "rule",
+                content: `
+                    <div class="space-y-4">
+                        <div class="bg-slate-800 p-4 rounded-xl border border-slate-700 flex justify-between items-center">
+                            <div>
+                                <h4 class="text-amber-400 font-bold text-sm">학생회관 전체 소등 및 통제 시간</h4>
+                                <p class="text-xs text-slate-300 mt-1">오후 23:00 ~ 익일 05:00</p>
+                            </div>
+                            <span class="text-xs bg-amber-500/20 text-amber-300 border border-amber-500/30 px-2.5 py-1 rounded font-semibold">출입 제안</span>
+                        </div>
+                        <p class="text-xs text-slate-300 leading-relaxed">해당 야간 집중 시간에 부득이 학업 보완을 위한 잔류 시, 동아리방 문을 폐쇄하여 외부인 도난을 상시 예방하며 소음 유발(고성방가, 음악 스피커 송출)은 영구 공간 차단 수준의 강력 패널티를 부여합니다.</p>
+                    </div>
+                `
+            },
+            {
+                title: "[최종 결의] 원스트라이크 아웃 상벌점 및 서약",
+                subtitle: "과거 관행 근절을 위한 최종 단계 안내",
+                type: "conclusion",
+                content: `
+                    <div class="space-y-4">
+                        <p class="text-sm text-slate-300 leading-relaxed">
+                            우리는 유구한 전통의 로타랙트가 과거 임원진 간 통신 오류로 입은 상처(3차 경고 수용)를 깨끗이 회복할 책임이 있습니다. 규정 준수는 자존심이 아니라 우리의 터전인 동아리방을 지키는 유일한 열쇠입니다.
+                        </p>
+                        <div class="text-center pt-2">
+                            <button onclick="switchTab('pledge')" class="inline-flex items-center space-x-2 px-6 py-3 bg-[#d91c5c] hover:bg-[#b8134a] text-white font-bold rounded-lg text-sm transition-all shadow-md">
+                                <i class="fa-solid fa-signature"></i> <span>온라인 안전 준수 서약하러 가기</span>
+                            </button>
+                        </div>
+                    </div>
+                `
+            }
+        ];
+
+        let currentSlideIndex = 0;
+
+        // Cloud Storage Mock Data
+        let cloudFiles = [
+            { id: 1, title: "2025-06-01_1차_경고_보고서_주류반입.pdf", type: "경고 지적", date: "2025-06-01", code: "ACC-2025-001", size: "2.4 MB", author: "인하대학교 학생지원팀" },
+            { id: 2, title: "2025-07-08_2차_경고_보고서_주류반입.pdf", type: "경고 지적", date: "2025-07-08", code: "ACC-2025-002", size: "3.1 MB", author: "인하대학교 학생지원팀" },
+            { id: 3, title: "2026-03-29_3차_경고_보고서_온풍기비치.pdf", type: "경고 지적", date: "2026-03-29", code: "ACC-2026-003", size: "1.8 MB", author: "동아리연합회 행정위원회" },
+            { id: 4, title: "2026-04-10_로타랙트_동아리방_자체소방전수검사_결과보고서.pdf", type: "자체 개선", date: "2026-04-10", code: "SELF-2026-01", size: "5.7 MB", author: "로타랙트 TF팀" }
+        ];
+
+        // 2. DOM EVENT LOADS & SETUP
+        window.onload = function() {
+            renderSlide();
+            renderSlideDots();
+            renderCloudFiles();
+            setupSignaturePad();
+        }
+
+        // 3. TAB NAVIGATION FUNCTION
+        function switchTab(tabId) {
+            // Hide all sections
+            document.querySelectorAll('.tab-content').forEach(section => {
+                section.classList.add('hidden');
+                section.classList.remove('block');
+            });
+            // Show active section
+            document.getElementById(`section-${tabId}`).classList.remove('hidden');
+            document.getElementById(`section-${tabId}`).classList.add('block');
+
+            // Deactivate all nav buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('bg-[#004d9c]', 'text-white');
+                btn.classList.add('text-slate-600', 'hover:bg-slate-100');
+            });
+            // Activate current nav button
+            const activeBtn = document.getElementById(`btn-${tabId}`);
+            activeBtn.classList.remove('text-slate-600', 'hover:bg-slate-100');
+            activeBtn.classList.add('bg-[#004d9c]', 'text-white');
+        }
+
+        // 4. PPT CONTROL LOGIC
+        function renderSlide() {
+            const slide = slides[currentSlideIndex];
+            
+            // Build Slide Number Text
+            document.getElementById('slide-number').innerText = `${String(currentSlideIndex + 1).padStart(2, '0')} / ${String(slides.length).padStart(2, '0')}`;
+            
+            // Set Progress Bar
+            const progressPercentage = ((currentSlideIndex + 1) / slides.length) * 100;
+            document.getElementById('slide-progress').style.width = `${progressPercentage}%`;
+
+            // Compile & Render HTML based on slide type
+            const titleColor = slide.type === 'conclusion' ? 'text-amber-400' : 'text-slate-100';
+            let contentHTML = `
+                <h3 class="text-2xl md:text-3xl font-extrabold ${titleColor} mb-2 leading-tight">${slide.title}</h3>
+                <p class="text-sm text-slate-400 mb-6 font-medium">${slide.subtitle}</p>
+                <div class="mt-4">${slide.content}</div>
+            `;
+            
+            document.getElementById('slide-content').innerHTML = contentHTML;
+            updateDots();
+        }
+
+        function renderSlideDots() {
+            const dotsContainer = document.getElementById('slide-dots');
+            dotsContainer.innerHTML = '';
+            slides.forEach((_, idx) => {
+                const dot = document.createElement('button');
+                dot.onclick = () => { currentSlideIndex = idx; renderSlide(); };
+                dot.className = "w-2.5 h-2.5 rounded-full transition-all duration-300 bg-slate-300";
+                dot.setAttribute('id', `slide-dot-${idx}`);
+                dotsContainer.appendChild(dot);
+            });
+            updateDots();
+        }
+
+        function updateDots() {
+            slides.forEach((_, idx) => {
+                const dot = document.getElementById(`slide-dot-${idx}`);
+                if (dot) {
+                    if (idx === currentSlideIndex) {
+                        dot.className = "w-6 h-2.5 rounded-full transition-all duration-300 bg-[#d91c5c]";
+                    } else {
+                        dot.className = "w-2.5 h-2.5 rounded-full transition-all duration-300 bg-slate-300 hover:bg-slate-400";
+                    }
+                }
+            });
+        }
+
+        function nextSlide() {
+            if (currentSlideIndex < slides.length - 1) {
+                currentSlideIndex++;
+                renderSlide();
+            } else {
+                showToast("마지막 슬라이드입니다. 준수 서약서 작성을 시작해 주세요!", "success");
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlideIndex > 0) {
+                currentSlideIndex--;
+                renderSlide();
+            }
+        }
+
+        // 5. CLOUD STORAGE SIMULATOR LOGIC
+        function renderCloudFiles() {
+            const listContainer = document.getElementById('cloud-file-list');
+            listContainer.innerHTML = '';
+
+            cloudFiles.forEach(file => {
+                const tr = document.createElement('tr');
+                tr.className = "hover:bg-slate-50 transition-all";
+                tr.innerHTML = `
+                    <td class="px-6 py-4 font-semibold text-slate-800 flex items-center space-x-2.5">
+                        <i class="fa-solid fa-file-pdf text-rose-500 text-lg"></i>
+                        <span class="cursor-pointer hover:underline text-slate-900" onclick="viewFile(${file.id})">${file.title}</span>
+                    </td>
+                    <td class="px-6 py-4">
+                        <span class="px-2.5 py-1 text-xs font-semibold rounded-full ${file.type === '경고 지적' ? 'bg-red-50 text-red-700 border border-red-100' : 'bg-emerald-50 text-emerald-700 border border-emerald-100'}">
+                            ${file.type}
+                        </span>
+                    </td>
+                    <td class="px-6 py-4 text-slate-500 text-xs">${file.date}</td>
+                    <td class="px-6 py-4 text-xs font-mono text-slate-400 font-bold">${file.code}</td>
+                    <td class="px-6 py-4 text-right">
+                        <button onclick="viewFile(${file.id})" class="text-xs font-bold text-[#004d9c] hover:underline mr-3"><i class="fa-solid fa-folder-open mr-1"></i>열기</button>
+                        <a href="#" onclick="mockDownload('${file.title}')" class="text-xs font-bold text-slate-500 hover:text-slate-800"><i class="fa-solid fa-arrow-down-to-line"></i> 다운</a>
+                    </td>
+                `;
+                listContainer.appendChild(tr);
+            });
+        }
+
+        function mockDownload(fileName) {
+            showToast(`[다운로드 완료] ${fileName}`, "success");
+        }
+
+        function viewFile(id) {
+            const file = cloudFiles.find(f => f.id === id);
+            if (!file) return;
+
+            const modalContent = document.getElementById('view-modal-content');
+            
+            // Build detailed warning layout
+            modalContent.innerHTML = `
+                <div class="text-center pb-4 border-b border-slate-100">
+                    <div class="w-12 h-12 bg-red-100 text-red-600 rounded-full flex items-center justify-center mx-auto mb-3">
+                        <i class="fa-solid fa-triangle-exclamation text-xl"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-slate-900">${file.title}</h4>
+                    <p class="text-xs text-slate-400 mt-1">파일 코드: ${file.code} | 등록처: ${file.author}</p>
+                </div>
+                <div class="py-6 space-y-4 text-sm text-slate-600">
+                    <div class="grid grid-cols-3 gap-2 border-b border-slate-50 pb-2">
+                        <span class="font-bold text-slate-500">지적 분류</span>
+                        <span class="col-span-2 text-slate-800 font-semibold">${file.type}</span>
+                    </div>
+                    <div class="grid grid-cols-3 gap-2 border-b border-slate-50 pb-2">
+                        <span class="font-bold text-slate-500">발생 일자</span>
+                        <span class="col-span-2 text-slate-800 font-mono">${file.date}</span>
+                    </div>
+                    <div class="grid grid-cols-3 gap-2 border-b border-slate-50 pb-2">
+                        <span class="font-bold text-slate-500">파일 크기</span>
+                        <span class="col-span-2 text-slate-800">${file.size}</span>
+                    </div>
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 mt-2">
+                        <h5 class="font-bold text-slate-800 text-xs mb-1">인수인계 및 재발방지 교훈</h5>
+                        <p class="text-xs text-slate-500 leading-relaxed">
+                            해당 건은 인하대학교 및 동아리연합회 규정을 위반한 징계 누적 사항으로, 정단원 누구나 항시 열람할 수 있도록 안전 클라우드에 영구 등재되었습니다. 차기 임원진은 정기 감찰 및 반기별 정상화 이행안 보고서 전수 인계를 이행해야 합니다.
+                        </p>
+                    </div>
+                </div>
+                <div class="flex space-x-3 pt-4 border-t border-slate-100">
+                    <button onclick="closeViewModal()" class="w-full py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-lg text-sm transition-all">확인 후 닫기</button>
+                </div>
+            `;
+            document.getElementById('view-modal').classList.remove('hidden');
+        }
+
+        function closeViewModal() {
+            document.getElementById('view-modal').classList.add('hidden');
+        }
+
+        function openUploadModal() {
+            document.getElementById('upload-modal').classList.remove('hidden');
+        }
+
+        function closeUploadModal() {
+            document.getElementById('upload-modal').classList.add('hidden');
+        }
+
+        function addCloudFile() {
+            const titleInput = document.getElementById('new-doc-title');
+            const typeInput = document.getElementById('new-doc-type');
+            const dateInput = document.getElementById('new-doc-date');
+
+            if (!titleInput.value.trim() || !dateInput.value) {
+                showToast("모든 정보를 올바르게 기입해 주세요.", "error");
+                return;
+            }
+
+            const formattedTitle = titleInput.value.trim().endsWith('.pdf') ? titleInput.value.trim() : `${titleInput.value.trim()}.pdf`;
+            const fileCode = `SEC-${2026}-${String(cloudFiles.length + 1).padStart(2, '0')}`;
+
+            const newFile = {
+                id: cloudFiles.length + 1,
+                title: formattedTitle,
+                type: typeInput.value,
+                date: dateInput.value,
+                code: fileCode,
+                size: "1.2 MB",
+                author: "로타랙트 자체 보고"
+            };
+
+            cloudFiles.unshift(newFile);
+            renderCloudFiles();
+            closeUploadModal();
+            
+            // Reset inputs
+            titleInput.value = '';
+            dateInput.value = '';
+            
+            showToast("신규 안전 지적 보고서가 중앙 클라우드에 동기화 완료되었습니다.", "success");
+        }
+
+        // 6. INTERACTIVE SIGNATURE PAD (HTML5 CANVAS) LOGIC
+        let canvas, ctx;
+        let drawing = false;
+
+        function setupSignaturePad() {
+            canvas = document.getElementById('sig-canvas');
+            ctx = canvas.getContext('2d');
+            ctx.strokeStyle = "#1e293b";
+            ctx.lineWidth = 3;
+            ctx.lineCap = "round";
+
+            // Mouse Events
+            canvas.addEventListener('mousedown', (e) => {
+                drawing = true;
+                const pos = getMousePos(canvas, e);
+                ctx.beginPath();
+                ctx.moveTo(pos.x, pos.y);
+            });
+
+            canvas.addEventListener('mousemove', (e) => {
+                if (!drawing) return;
+                const pos = getMousePos(canvas, e);
+                ctx.lineTo(pos.x, pos.y);
+                ctx.stroke();
+            });
+
+            canvas.addEventListener('mouseup', () => drawing = false);
+            canvas.addEventListener('mouseleave', () => drawing = false);
+
+            // Touch Events (For Mobile/Tablet compatibility)
+            canvas.addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                drawing = true;
+                const touch = e.touches[0];
+                const pos = getTouchPos(canvas, touch);
+                ctx.beginPath();
+                ctx.moveTo(pos.x, pos.y);
+            }, { passive: false });
+
+            canvas.addEventListener('touchmove', (e) => {
+                e.preventDefault();
+                if (!drawing) return;
+                const touch = e.touches[0];
+                const pos = getTouchPos(canvas, touch);
+                ctx.lineTo(pos.x, pos.y);
+                ctx.stroke();
+            }, { passive: false });
+
+            canvas.addEventListener('touchend', () => drawing = false);
+        }
+
+        function getMousePos(canvasDom, mouseEvent) {
+            const rect = canvasDom.getBoundingClientRect();
+            return {
+                x: mouseEvent.clientX - rect.left,
+                y: mouseEvent.clientY - rect.top
+            };
+        }
+
+        function getTouchPos(canvasDom, touch) {
+            const rect = canvasDom.getBoundingClientRect();
+            return {
+                x: touch.clientX - rect.left,
+                y: touch.clientY - rect.top
+            };
+        }
+
+        function clearSignature() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
+
+        // 7. PLEDGE FORM SUBMISSION & CERTIFICATE GENERATION
+        function submitPledge() {
+            const name = document.getElementById('signer-name').value.trim();
+            const idNumber = document.getElementById('signer-id').value.trim();
+            const phone = document.getElementById('signer-phone').value.trim();
+
+            if (!name || !idNumber || !phone) {
+                showToast("서약자의 인적 사항(성명, 학번, 연락처)을 모두 작성해 주세요.", "error");
+                return;
+            }
+
+            // Simple check to make sure they didn't submit empty canvas
+            const isCanvasEmpty = isCanvasBlank(canvas);
+            if (isCanvasEmpty) {
+                showToast("디지털 서명란에 마우스나 손가락을 사용해 서명해 주세요.", "error");
+                return;
+            }
+
+            // Generate Official Digital Receipt / PDF layout inside the container
+            const pledgeArea = document.getElementById('pledge-form-area');
+            const signatureImgData = canvas.toDataURL(); // Get PNG of signature
+
+            pledgeArea.innerHTML = `
+                <div class="text-center py-10 space-y-6">
+                    <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-2 animate-bounce">
+                        <i class="fa-solid fa-stamp text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-black text-slate-900 tracking-tight">서약 제출 및 학적 확인 검증 완료</h3>
+                    <p class="text-sm text-slate-500 max-w-md mx-auto">
+                        귀하의 인하대학교 안전수칙 서약이 안전관리위원회 시스템에 영구 보존 등록되었습니다.<br>이수 영수증을 동아리방 입장 시 임원진에게 제시하십시오.
+                    </p>
+
+                    <div class="max-w-md mx-auto bg-slate-50 border-2 border-slate-200 rounded-2xl p-6 text-left relative mt-6">
+                        <!-- Simulated Stamp -->
+                        <div class="absolute right-6 top-6 border-4 border-emerald-500/30 text-emerald-500/40 text-[10px] uppercase font-black px-2 py-1 rotate-12 rounded">
+                            Approved <br> Inha Rotaract
+                        </div>
+                        <h4 class="font-extrabold text-slate-800 text-base mb-4 pb-2 border-b border-slate-200 flex items-center justify-between">
+                            <span>소방안전 이수증</span>
+                            <span class="text-xs font-mono text-[#004d9c]">NO. 2026-REG-8492</span>
+                        </h4>
+                        <div class="space-y-2 text-xs text-slate-600">
+                            <p><span class="font-bold inline-block w-20">이수자 성명:</span> <span class="text-slate-900 font-semibold">${name}</span></p>
+                            <p><span class="font-bold inline-block w-20">학번:</span> <span class="text-slate-900 font-mono">${idNumber}</span></p>
+                            <p><span class="font-bold inline-block w-20">연락처:</span> <span class="text-slate-900 font-mono">${phone}</span></p>
+                            <p><span class="font-bold inline-block w-20">이수일자:</span> <span class="text-slate-900 font-mono">2026년 5월 18일</span></p>
+                            <p><span class="font-bold inline-block w-20">이수교육:</span> <span class="text-emerald-700 font-bold">동아리방 소방안전 및 질서유지 교육</span></p>
+                        </div>
+                        <div class="mt-6 flex items-center justify-between border-t border-slate-100 pt-4">
+                            <span class="text-[10px] text-slate-400">인하대학교 로타랙트 회장 인</span>
+                            <div class="w-32 h-12 flex items-center justify-center bg-white border border-slate-200 rounded p-1">
+                                <img src="${signatureImgData}" alt="Signature" class="max-h-full max-w-full">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-6 space-x-3">
+                        <button onclick="location.reload()" class="px-5 py-2.5 bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold rounded-xl text-sm transition-all">
+                            새로 작성하기
+                        </button>
+                        <button onclick="window.print()" class="px-5 py-2.5 bg-[#004d9c] hover:bg-[#003c7a] text-white font-bold rounded-xl text-sm transition-all shadow-md">
+                            <i class="fa-solid fa-print mr-1"></i> 이수증 인쇄하기
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            showToast("안전 서약이 성공적으로 데이터베이스에 제출되었습니다.", "success");
+        }
+
+        function isCanvasBlank(canvasDom) {
+            const blank = document.createElement('canvas');
+            blank.width = canvasDom.width;
+            blank.height = canvasDom.height;
+            return canvasDom.toDataURL() === blank.toDataURL();
+        }
+
+        // 8. TOAST NOTIFICATION LOGIC
+        function showToast(message, type = "success") {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toast-message');
+            const toastIcon = document.getElementById('toast-icon');
+
+            toastMsg.innerText = message;
+            if (type === "error") {
+                toastIcon.innerHTML = `<i class="fa-solid fa-triangle-exclamation text-rose-500 text-lg"></i>`;
+            } else {
+                toastIcon.innerHTML = `<i class="fa-solid fa-circle-check text-emerald-400 text-lg"></i>`;
+            }
+
+            // Animate In
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            // Animate Out
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3500);
+        }
+    </script>
+</body>
+</html>
